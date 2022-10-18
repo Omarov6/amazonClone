@@ -39,77 +39,81 @@
             </div>
         </nav>
 
+        <div class="container">
+            <div class="row">
+                <%
+                    ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
 
-        <%
-            ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
+                    if (prds != null) {
+                        for (product prd : prds) {
+                            ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
+                %>
 
-            if (prds != null) {
-                for (product prd : prds) {
-                    ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
-        %>
-        <div class="container my-4 w-50">
 
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <!-- Diapositivas -->
-                <div class="carousel-inner">
-                    <%
-                        int cont = 0;
-                        for (String img : images) {
-                        if(cont == 0){
-                    %>
-                       
-                        <div class="carousel-item active">
-                            <div class="card h-100">
-                                <img src="<% out.println(img); %>" class="card-img-top w-100 bg-dark" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><% out.println(prd.name); %></h5>
-                                    <p class="card-text"><% out.println(prd.description); %></p>
-                                    <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
-                                    <button class="btn btn-success btn-block">Comprar</button>
+                <div class="col">
+                    <div id="carouselExampleControls<% out.print(prd.id); %>" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <%
+                                int cont = 0;
+                                for (String img : images) {
+                                    if (cont == 0) {
+                            %>
+
+                            <div class="carousel-item active">
+                                <div class="card h-100">
+                                    <img src="<% out.println(img); %>" class="card-img-top w-100 bg-dark img" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><% out.println(prd.name); %></h5>
+                                        <p class="card-text"><% out.println(prd.description); %></p>
+                                        <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
+                                        <button class="btn btn-success btn-block">Comprar</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <%
-                        cont++;
-                        }else{
-                    %>  
-                        <div class="carousel-item">
-                            <div class="card h-100">
-                                <img src="<% out.println(img); %>" class="card-img-top w-100 bg-dark" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><% out.println(prd.name); %></h5>
-                                    <p class="card-text"><% out.println(prd.description); %></p>
-                                    <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
-                                    <button class="btn btn-success btn-block">Comprar</button>
+                            <%
+                                cont++;
+                            } else {
+                            %>  
+                            <div class="carousel-item">
+                                <div class="card h-100">
+                                    <img src="<% out.println(img); %>" class="card-img-top w-100 bg-dark img" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><% out.println(prd.name); %></h5>
+                                        <p class="card-text"><% out.println(prd.description); %></p>
+                                        <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
+                                        <button class="btn btn-success btn-block">Comprar</button>
+                                    </div>
                                 </div>
                             </div>
+                            <%
+                                    }
+                                }
+                            %>
                         </div>
-                    <% 
-                        }
-                       }
-                    %>
+                        <a class="carousel-control-prev" href="#carouselExampleControls<% out.print(prd.id); %>" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls<% out.print(prd.id); %>" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+
+
+
+
+                <%
+                        }
+
+                    } else {
+                        out.println("<p> No se mostraron los productos </p>");
+                    }
+
+                %>
             </div>
-
         </div>
-        <%
-            }
-
-            }else{
-                out.println("<p> No se mostraron los productos </p>");
-            }
-           
-        %>
-
-
 
 
 

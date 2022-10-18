@@ -10,10 +10,20 @@
     padding-left: 50px;
 }
 
-#carouselExampleControls{
+.slide{
     width: 300px;
 }
 
 .price{
     font-size: 40px;
+}
+
+.img{
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.container{
+    margin-top: 80px;
 }
