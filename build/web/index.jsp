@@ -48,8 +48,6 @@
                         for (product prd : prds) {
                             ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                 %>
-
-
                 <div class="col">
                     <div id="carouselExampleControls<% out.print(prd.id); %>" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -66,7 +64,7 @@
                                         <h5 class="card-title"><% out.println(prd.name); %></h5>
                                         <p class="card-text"><% out.println(prd.description); %></p>
                                         <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
-                                        <button class="btn btn-success btn-block">Comprar</button>
+                                        <a class="btn btn-success btn-block" href="products_controller?product=<%=prd.id%>">Agregar al Carrito</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +79,7 @@
                                         <h5 class="card-title"><% out.println(prd.name); %></h5>
                                         <p class="card-text"><% out.println(prd.description); %></p>
                                         <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
-                                        <button class="btn btn-success btn-block">Comprar</button>
+                                        <a class="btn btn-success btn-block" href="products_controller?product=<%=prd.id%>">Agregar al Carrito</a>
                                     </div>
                                 </div>
                             </div>
@@ -106,11 +104,9 @@
 
                 <%
                         }
-
                     } else {
                         out.println("<p> No se mostraron los productos </p>");
                     }
-
                 %>
             </div>
         </div>

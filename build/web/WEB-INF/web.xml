@@ -4,9 +4,17 @@
         <servlet-name>init</servlet-name>
         <servlet-class>servlets.init</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>products_controller</servlet-name>
+        <servlet-class>servlets.products_controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>products_controller</servlet-name>
+        <url-pattern>/products_controller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

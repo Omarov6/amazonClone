@@ -1,36 +1,32 @@
 
 package servlets;
 
-import database.connectionDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.util.ArrayList;
 import models.product;
 
-public class init extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+public class products_controller extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            ArrayList<product> prds = connectionDB.getAllProducts();
-            request.getSession().setAttribute("products", prds);
-            ArrayList<product> prds_b = new ArrayList<product>();
-            request.getSession().setAttribute("prds_buy", prds_b);
+            String id = request.getParameter("product");
+            ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
+            ArrayList<product> prds_buy = new ArrayList<product>();
+            if(prds != null){
+                for(product prd : prds){
+                    if(id.equals(prd.id)){
+                        prds_buy.add(prd);
+                    }
+                }
+            }
+            request.getSession().setAttribute("prds_buy", prds_buy);
             response.sendRedirect("index.jsp");
-                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
