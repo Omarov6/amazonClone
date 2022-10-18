@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
+import java.util.ArrayList;
+import models.product;
 
 public class init extends HttpServlet {
 
@@ -30,6 +32,9 @@ public class init extends HttpServlet {
             }else{
                 System.out.println("Conectado!");
             }*/
+            ArrayList<product> prds = connectionDB.getAllProducts();
+            request.getSession().setAttribute("products", prds);
+            response.sendRedirect("index.jsp");
                 
     }
 

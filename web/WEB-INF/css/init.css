@@ -9,3 +9,11 @@
 .navbar-brand{
     padding-left: 50px;
 }
+
+#carouselExampleControls{
+    width: 300px;
+}
+
+.price{
+    font-size: 40px;
+}
