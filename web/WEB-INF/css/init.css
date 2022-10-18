@@ -1,0 +1,7 @@
+.form-inline{
+    width: 900px;
+}
+
+.form-inline .form-control{
+    width: 700px !important;
+}

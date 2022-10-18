@@ -23,12 +23,13 @@ public class init extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            /*
             Connection conn = connectionDB.createConnection();
             if(conn == null){
                 System.out.println("No hay conexion");
             }else{
                 System.out.println("Conectado!");
-            }
+            }*/
                 
     }
 

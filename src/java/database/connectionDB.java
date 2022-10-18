@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 
 public class connectionDB {
     public static Connection createConnection(){
-       String url = "jdbc:oracle:thin:@192.168.1.27:1521:xe";
+       String url = "jdbc:oracle:thin:@localhost:1521:xe";
         String user ="system";
         String password = "1234";
         
