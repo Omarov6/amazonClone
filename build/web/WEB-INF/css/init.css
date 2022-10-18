@@ -27,3 +27,7 @@
 .container{
     margin-top: 80px;
 }
+
+.card{
+    height: 500px !important;
+}

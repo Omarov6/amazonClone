@@ -60,7 +60,7 @@
                             %>
 
                             <div class="carousel-item active">
-                                <div class="card h-100">
+                                <div class="card">
                                     <img src="<% out.println(img); %>" class="card-img-top w-100 bg-dark img" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title"><% out.println(prd.name); %></h5>
@@ -75,7 +75,7 @@
                             } else {
                             %>  
                             <div class="carousel-item">
-                                <div class="card h-100">
+                                <div class="card">
                                     <img src="<% out.println(img); %>" class="card-img-top w-100 bg-dark img" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title"><% out.println(prd.name); %></h5>
