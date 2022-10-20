@@ -12,14 +12,14 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
     <body>
-        <p>pagina para mostrar carrito</p>
         <%
             ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
             if (prds == null) {
                 out.print("<p>No hay ningun producto agregado al carrito</p>");
             } else {
+                int total_pagar = 0;
         %>
-        <div class="container">
+        <div class="container" style="margin-top: 120px;">
             <div class="row">
                 <div class="col">
 
@@ -36,14 +36,21 @@
                         <tbody >
                             <%
                                 for (product prd : prds) {
+                                    total_pagar += prd.price;
                                     ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                                     out.print("<tr>");
-                                    out.print("<th scope='row'><img src='"+ images.get(0) +"' width='100' ></th>");
+                                    out.print("<th scope='row'><img src='" + images.get(0) + "' width='100' ></th>");
                                     out.print("<th>" + prd.name + "</th>");
                                     out.print("<td>" + prd.description + "</td>");
-                                    out.print("<td>" + prd.price + "</td>");
+                                    out.print("<td>Q." + prd.price + "</td>");
                                     out.print("</tr>");
                                 }
+                                out.print("<tr>");
+                                out.print("<th scope='row'> Total a Pagar </th>");
+                                out.print("<th> ----------- </th>");
+                                out.print("<td> ----------- </td>");
+                                out.print("<td> <b>Q." + total_pagar + "</b></td>");
+                                out.print("</tr>");
                             %>
                         </tbody>
                     </table>
