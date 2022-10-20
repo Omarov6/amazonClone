@@ -47,8 +47,8 @@
                                 }
                                 out.print("<tr>");
                                 out.print("<th scope='row'> Total a Pagar </th>");
-                                out.print("<th> ----------- </th>");
-                                out.print("<td> ----------- </td>");
+                                out.print("<th> --------------------- </th>");
+                                out.print("<td> --------------------- </td>");
                                 out.print("<td> <b>Q." + total_pagar + "</b></td>");
                                 out.print("</tr>");
                             %>
