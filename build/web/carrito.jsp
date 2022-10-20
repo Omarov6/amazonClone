@@ -11,13 +11,11 @@
         <title>Productos en el carrito</title>
     </head>
     <body>
-        <%%>
+        <p>pagina para mostrar carrito</p>
         <%
             ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
             if (prds == null) {
-        %>
-        <p>No hay ningun producto agregado al carrito</p>
-        <%
+                out.print("<p>No hay ningun producto agregado al carrito</p>"); 
             } else {
                 for (product prd : prds) {
                     out.println("<p>"+ prd.name +"</p>");

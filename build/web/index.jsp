@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Registrarse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/carrit.jsp">Carrito</a>
+                        <a class="nav-link" href="carrito.jsp">Carrito</a>
                     </li>
                 </ul>
 
@@ -40,6 +40,15 @@
         </nav>
 
         <div class="container">
+            <%
+                if (null != request.getSession().getAttribute("prds_buy")) {
+                    ArrayList<product> b_prd = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+                    out.println("<p>carrito: " + b_prd.size() + "</p>");
+                }
+                else{
+                    out.println("es null");
+                }
+            %>
             <div class="row">
                 <%
                     ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
@@ -48,6 +57,8 @@
                         for (product prd : prds) {
                             ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                 %>
+
+
                 <div class="col">
                     <div id="carouselExampleControls<% out.print(prd.id); %>" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -63,7 +74,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><% out.println(prd.name); %></h5>
                                         <p class="card-text"><% out.println(prd.description); %></p>
-                                        <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
+                                        <p class="card-text price"> <b>Q.<% out.println(prd.price);%></b> </p>
                                         <a class="btn btn-success btn-block" href="products_controller?product=<%=prd.id%>">Agregar al Carrito</a>
                                     </div>
                                 </div>
@@ -78,7 +89,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><% out.println(prd.name); %></h5>
                                         <p class="card-text"><% out.println(prd.description); %></p>
-                                        <p class="card-text price"> <b>Q.<% out.println(prd.price); %></b> </p>
+                                        <p class="card-text price"> <b>Q.<% out.println(prd.price);%></b> </p>
                                         <a class="btn btn-success btn-block" href="products_controller?product=<%=prd.id%>">Agregar al Carrito</a>
                                     </div>
                                 </div>

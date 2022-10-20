@@ -27,8 +27,6 @@ public class init extends HttpServlet {
             throws ServletException, IOException {
             ArrayList<product> prds = connectionDB.getAllProducts();
             request.getSession().setAttribute("products", prds);
-            ArrayList<product> prds_b = new ArrayList<product>();
-            request.getSession().setAttribute("prds_buy", prds_b);
             response.sendRedirect("index.jsp");
                 
     }

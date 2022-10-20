@@ -4,6 +4,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,16 +18,28 @@ public class products_controller extends HttpServlet {
             throws ServletException, IOException {
             String id = request.getParameter("product");
             ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
-            ArrayList<product> prds_buy = new ArrayList<product>();
+            ArrayList<product> prds_buy;
+            if(request.getSession().getAttribute("prds_buy") == null){
+                prds_buy = new ArrayList<product>();
+            }
+            else{
+                prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+            }
             if(prds != null){
                 for(product prd : prds){
-                    if(id.equals(prd.id)){
+                    if(Integer.valueOf(id) == prd.id){
                         prds_buy.add(prd);
                     }
                 }
             }
+            
+            System.out.println("Tamaño del nuevo arreglo: " + prds_buy.size());
+            request.getSession().invalidate();
             request.getSession().setAttribute("prds_buy", prds_buy);
-            response.sendRedirect("index.jsp");
+            RequestDispatcher rd =  request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+            //request.setAttribute("prd_buy", prds_buy);
+            //response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
