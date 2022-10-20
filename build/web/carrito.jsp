@@ -9,9 +9,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Productos en el carrito</title>
+        <style><%@include file="/WEB-INF/css/init.css"%></style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdn-icons-png.flaticon.com/512/181/181591.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                RapiCompras
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success ml-1" type="submit">Search</button>
+            </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.jsp">Agregar mas productos</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
         <%
             ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
             if (prds == null) {
@@ -57,6 +79,9 @@
                     <%
                         }
                     %>
+                    <div class="form-group">
+                        <button class="btn btn-success ">Realizar Compra</button>
+                    </div>
                 </div>
             </div>
         </div>
