@@ -64,7 +64,7 @@
                                 generadorProductos gp = new generadorProductos();
                                 ArrayList<product_view> productos = gp.obtenerVista(prds);
                                 for (product_view prd : productos) {
-                                    total_pagar += prd.price;
+                                    total_pagar += prd.price * prd.cantidad;
                                     ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                                     out.print("<tr>");
                                     out.print("<th scope='row'><img src='" + images.get(0) + "' width='100' ></th>");

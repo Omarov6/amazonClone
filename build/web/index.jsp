@@ -32,7 +32,14 @@
                         <a class="nav-link" href="#">Registrarse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="carrito.jsp">Carrito</a>
+                        <%
+                            if (null != request.getSession().getAttribute("prds_buy")) {
+                                ArrayList<product> b_prd = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+                                out.println("<a class='nav-link' href='carrito.jsp'>Carrito " + b_prd.size() + " </a>");
+                            } else {
+                                out.println("<a class='nav-link' href='carrito.jsp'>Carrito</a>");
+                            }
+                        %>
                     </li>
                 </ul>
 
@@ -40,15 +47,7 @@
         </nav>
 
         <div class="container">
-            <%
-                if (null != request.getSession().getAttribute("prds_buy")) {
-                    ArrayList<product> b_prd = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
-                    out.println("<p>carrito: " + b_prd.size() + "</p>");
-                }
-                else{
-                    out.println("es null");
-                }
-            %>
+
             <div class="row">
                 <%
                     ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
