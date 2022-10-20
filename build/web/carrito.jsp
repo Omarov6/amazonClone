@@ -1,5 +1,7 @@
 
 
+<%@page import="models.product_view"%>
+<%@page import="models.generadorProductos"%>
 <%@page import="database.connectionDB"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.product"%>
@@ -51,6 +53,7 @@
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Nombre</th>
+                                <th scope="col">Cantidad</th>
                                 <th scope="col">Descripcion</th>
                                 <th scope="col">Acciones</th>
                                 <th scope="col">Precio</th>
@@ -58,12 +61,16 @@
                         </thead>
                         <tbody >
                             <%
-                                for (product prd : prds) {
+                                generadorProductos gp = new generadorProductos();
+                                ArrayList<product_view> productos = gp.obtenerVista(prds);
+                                if(productos != null)out.print(productos.size());
+                                for (product_view prd : productos) {
                                     total_pagar += prd.price;
                                     ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                                     out.print("<tr>");
                                     out.print("<th scope='row'><img src='" + images.get(0) + "' width='100' ></th>");
                                     out.print("<th>" + prd.name + "</th>");
+                                    out.print("<th>" + prd.cantidad + "</th>");
                                     out.print("<td>" + prd.description + "</td>");
                                     out.print("<td> <a class='btn btn-primary' href='increment?product="+prd.id+"'>+</a> <a class='btn btn-danger' href='decrement?product="+prd.id+"'>-</a></td>");
                                     out.print("<td>Q." + prd.price + "</td>");
@@ -72,6 +79,8 @@
                                 out.print("<tr>");
                                 out.print("<th scope='row'> Total a Pagar </th>");
                                 out.print("<th> --------------------- </th>");
+                                out.print("<td> --------------------- </td>");
+                                out.print("<td> --------------------- </td>");
                                 out.print("<td> --------------------- </td>");
                                 out.print("<td> <b>Q." + total_pagar + "</b></td>");
                                 out.print("</tr>");
