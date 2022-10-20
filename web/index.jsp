@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Registrarse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/carrito">Carrito</a>
+                        <a class="nav-link" href="/carrit.jsp">Carrito</a>
                     </li>
                 </ul>
 
