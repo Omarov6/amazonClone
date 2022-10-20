@@ -27,7 +27,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col"></th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripcion</th>
                                 <th scope="col">Precio</th>
@@ -36,9 +36,9 @@
                         <tbody >
                             <%
                                 for (product prd : prds) {
-
+                                    ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                                     out.print("<tr>");
-                                    out.print("<th scope='row'>" + prd.id + "</th>");
+                                    out.print("<th scope='row'><img src='"+ images.get(0) +"' width='100' ></th>");
                                     out.print("<th>" + prd.name + "</th>");
                                     out.print("<td>" + prd.description + "</td>");
                                     out.print("<td>" + prd.price + "</td>");
