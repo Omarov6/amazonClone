@@ -8,6 +8,14 @@
         <servlet-name>products_controller</servlet-name>
         <servlet-class>servlets.products_controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>increment</servlet-name>
+        <servlet-class>servlets.increment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>decrement</servlet-name>
+        <servlet-class>servlets.decrement</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>products_controller</servlet-name>
         <url-pattern>/products_controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>increment</servlet-name>
+        <url-pattern>/increment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>decrement</servlet-name>
+        <url-pattern>/decrement</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -52,6 +52,7 @@
                                 <th scope="col"></th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripcion</th>
+                                <th scope="col">Acciones</th>
                                 <th scope="col">Precio</th>
                             </tr>
                         </thead>
@@ -64,6 +65,7 @@
                                     out.print("<th scope='row'><img src='" + images.get(0) + "' width='100' ></th>");
                                     out.print("<th>" + prd.name + "</th>");
                                     out.print("<td>" + prd.description + "</td>");
+                                    out.print("<td> <a class='btn btn-primary' href='increment?product="+prd.id+"'>+</a> <a class='btn btn-danger' href='decrement?product="+prd.id+"'>-</a></td>");
                                     out.print("<td>Q." + prd.price + "</td>");
                                     out.print("</tr>");
                                 }
