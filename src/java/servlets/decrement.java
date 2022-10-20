@@ -45,6 +45,7 @@ public class decrement extends HttpServlet {
             }
             request.getSession().invalidate();
             request.getSession().setAttribute("prds_buy", prds_buy);
+            request.getSession().setAttribute("products", prds);
             RequestDispatcher rd =  request.getRequestDispatcher("carrito.jsp");
             rd.forward(request, response);
     }

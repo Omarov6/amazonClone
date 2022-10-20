@@ -1,4 +1,3 @@
-
 package servlets;
 
 import java.io.IOException;
@@ -11,44 +10,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.product;
 
-/**
- *
- * @author omar1
- */
 public class increment extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("product");
         System.out.println("ID recibido: " + id);
         ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
-        ArrayList<product> prds_buy;
-            if(request.getSession().getAttribute("prds_buy") == null){
-                prds_buy = new ArrayList<product>();
-            }
-            else{
-                prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
-            }
-            if(prds != null){
-                for(product prd : prds){
-                    if(Integer.valueOf(id) == prd.id){
-                        prds_buy.add(prd);
-                    }
+        ArrayList<product> prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+        if (prds != null) {
+            System.out.println("entramos al if");
+            for (product prd : prds) {
+                System.out.println("entramos al for");
+                if (Integer.valueOf(id) == prd.id) {
+                    System.out.println("entramos al if de agregar");
+                    prds_buy.add(prd);
                 }
             }
-            request.getSession().invalidate();
-            request.getSession().setAttribute("prds_buy", prds_buy);
-            RequestDispatcher rd =  request.getRequestDispatcher("carrito.jsp");
-            rd.forward(request, response);
+        }
+        else{
+            System.out.println("No se pudo entrar ptm");
+        }
+        request.getSession().invalidate();
+        request.getSession().setAttribute("prds_buy", prds_buy);
+        request.getSession().setAttribute("products", prds);
+        RequestDispatcher rd = request.getRequestDispatcher("carrito.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
