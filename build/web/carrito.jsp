@@ -90,7 +90,7 @@
                         }
                     %>
                     <div class="form-group">
-                        <button class="btn btn-success ">Realizar Compra</button>
+                        <a href="pago.jsp" class="btn btn-success ">Realizar Compra</a>
                     </div>
                 </div>
             </div>
