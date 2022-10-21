@@ -15,7 +15,7 @@
                     <div class="col-md-5 mx-auto">
                         <label htmlFor="">Numero de la tarjeta</label>
                         <div class="form-group">
-                            <input type="tel" onkeypress='return formats(this, event)' onkeyup="return numberValidation(event)" class="form-control" placeholder="0000 0000 0000 0000" />
+                            <input type="tel" id="card" onkeypress='return formats(this, event)' onkeyup="return numberValidation(event)" class="form-control" placeholder="0000 0000 0000 0000" />
                         </div>
                         <label htmlFor="">Fecha</label>
                         <div class="form-group">
@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="658"  maxlength="3"/>
                         </div>
-                        <button class='btn btn-success btn-block'>Realizar Pago</button>
+                        <button class='btn btn-success btn-block' onclick="confirmCard()" >Realizar Pago</button>
                     </div>
                 </div>
             </div>
@@ -33,6 +33,16 @@
         </div>
 
         <script>
+            
+            function confirmCard(){
+                var number = document.getElementById("card").value
+                number = number.replace(/\s/g, '');
+                if(!validateCardNumber(number)){
+                    alert("No es valido lol");
+                    document.getElementById("card").value = ""
+                }
+            }
+            
             function formats(ele, e) {
                 if (ele.value.length < 19) {
                     ele.value = ele.value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
@@ -70,6 +80,49 @@
                         ).replace(
                         /\/\//g, '/' // Prevent entering more than 1 `/`
                         );
+            }
+
+
+            const validateCardNumber = number => {
+                //Check if the number contains only numeric value  
+                //and is of between 13 to 19 digits
+                const regex = new RegExp("^[0-9]{13,19}$");
+                if (!regex.test(number)) {
+                    return false;
+                }
+
+                return luhnCheck(number);
+            }
+
+            const luhnCheck = val => {
+                let checksum = 0; // running checksum total
+                let j = 1; // takes value of 1 or 2
+
+                // Process each digit one by one starting from the last
+                for (let i = val.length - 1; i >= 0; i--) {
+                    let calc = 0;
+                    // Extract the next digit and multiply by 1 or 2 on alternative digits.
+                    calc = Number(val.charAt(i)) * j;
+
+                    // If the result is in two digits add 1 to the checksum total
+                    if (calc > 9) {
+                        checksum = checksum + 1;
+                        calc = calc - 10;
+                    }
+
+                    // Add the units element to the checksum total
+                    checksum = checksum + calc;
+
+                    // Switch the value of j
+                    if (j == 1) {
+                        j = 2;
+                    } else {
+                        j = 1;
+                    }
+                }
+
+                //Check if it is divisible by 10 or not.
+                return (checksum % 10) == 0;
             }
         </script>
     </body>
