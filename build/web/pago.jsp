@@ -41,6 +41,10 @@
                     alert("No es valido lol");
                     document.getElementById("card").value = ""
                 }
+                else{
+                    alert("tarjeta validad :v");
+                }
+             
             }
             
             function formats(ele, e) {
