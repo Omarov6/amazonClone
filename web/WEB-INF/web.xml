@@ -16,6 +16,10 @@
         <servlet-name>decrement</servlet-name>
         <servlet-class>servlets.decrement</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sale_controller</servlet-name>
+        <servlet-class>servlets.sale_controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>decrement</servlet-name>
         <url-pattern>/decrement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sale_controller</servlet-name>
+        <url-pattern>/sale_controller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

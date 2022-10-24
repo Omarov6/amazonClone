@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="servlets.sale_controller"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,44 +11,62 @@
     <body>
         <div>
 
-            <div class="container" style="margin-top: 180px;">
+            <div class="container" style="margin-top: 80px;">
                 <div class="row">
-                    <div class="col-md-5 mx-auto">
-                        <label htmlFor="">Numero de la tarjeta</label>
-                        <div class="form-group">
-                            <input type="tel" id="card" onkeypress='return formats(this, event)' onkeyup="return numberValidation(event)" class="form-control" placeholder="0000 0000 0000 0000" />
+                    <form class="row mx-auto"" id="form" action="sale_controller" method="POST" onsubmit="event.preventDefault(); return confirmCard();">
+                        <div class="col-md-4 mx-auto"  style="margin-top: 0px;">
+                            <label>Campos de Usuario</label>
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="surname" class="form-control" placeholder="Apellido" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nit"  class="form-control" placeholder="NIT" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nit"  class="form-control" placeholder="Telefono" />
+                            </div>
                         </div>
-                        <label htmlFor="">Fecha</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="09/10" onkeyup="formatString(event);"  maxlength="5"/>
+                        <div class="col-md-4 mx-auto">
+
+                            <label htmlFor="">Numero de la tarjeta</label>
+                            <div class="form-group">
+                                <input type="tel" id="card" onkeypress='return formats(this, event)' onkeyup="return numberValidation(event)" class="form-control" placeholder="0000 0000 0000 0000" />
+                            </div>
+                            <label htmlFor="">Fecha</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="09/10" onkeyup="formatString(event);"  maxlength="5"/>
+                            </div>
+                            <label htmlFor="">CCV</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="658"  maxlength="3"/>
+                            </div>
                         </div>
-                        <label htmlFor="">CCV</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="658"  maxlength="3"/>
-                        </div>
-                        <button class='btn btn-success btn-block' onclick="confirmCard()" >Realizar Pago</button>
-                    </div>
+                        <button class='btn btn-success btn-block' >Realizar Pago</button>
+                    </form>
                 </div>
             </div>
 
         </div>
 
         <script>
-            
-            function confirmCard(){
+
+            function confirmCard(e) {
                 var number = document.getElementById("card").value
                 number = number.replace(/\s/g, '');
-                if(!validateCardNumber(number)){
+                if (!validateCardNumber(number)) {
                     alert("No es valido lol");
                     document.getElementById("card").value = ""
+                } else {
+                    var form = document.getElementById("form");
+                    form.submit();
                 }
-                else{
-                    alert("tarjeta validad :v");
-                }
-             
+
             }
-            
-            function formats(ele, e) {
+
+            function formats(ele) {
                 if (ele.value.length < 19) {
                     ele.value = ele.value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
                     return true;
