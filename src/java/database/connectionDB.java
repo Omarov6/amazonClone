@@ -129,6 +129,30 @@ public class connectionDB {
         }
         return -1;
     }
+    
+    public static int getLastSaleID() {
+
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return -1;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select VENTA.ID from VENTA ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+            int id = 0;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            return id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
 
     public static boolean userExist(String ref) {
         try {

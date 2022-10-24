@@ -1,4 +1,3 @@
-
 package servlets;
 
 import java.io.IOException;
@@ -11,41 +10,43 @@ import java.util.ArrayList;
 import models.product;
 import database.connectionDB;
 import models.Client;
+import models.Venta;
 
 public class sale_controller extends HttpServlet {
 
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("name") != null) System.out.println(request.getParameter("name"));
+        if (request.getParameter("name") != null) {
+            System.out.println(request.getParameter("name"));
+        }
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String phone = request.getParameter("phone");
         int nit = Integer.valueOf(request.getParameter("nit"));
-        
-        if(!connectionDB.userExist(name)){
+
+        if (!connectionDB.userExist(name)) {
             int id = connectionDB.getLastClientID() + 1;
+            int invoice_id = connectionDB.getLastID() + 1;
             connectionDB.createClient(new Client(id, name, surname, phone, nit));
-            connectionDB.createInvoice(connectionDB.getLastID()+1, id);
-        }
-        else{
-            int id = connectionDB.getIdByName(name);
-            connectionDB.createInvoice(connectionDB.getLastID()+1, id);
-        }
-        
-        
-        else{
-            System.out.println("No se pudo obtener nada");
-        }
-        if(request.getSession().getAttribute("prds_buy") == null){
-            System.out.println("No exite este campo lol");
-        }
-        else{
+            connectionDB.createInvoice(invoice_id, id);
             ArrayList<product> prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
-            if(prds_buy != null){
-                System.out.println("Tamaño del arreglo: " + prds_buy.size());
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            for (product prd : prds_buy) {
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID(), date, prd.id, invoice_id, id, 5));
+            }
+        } else {
+            int id = connectionDB.getIdByName(name);
+            int invoice_id = connectionDB.getLastID() + 1;
+            connectionDB.createInvoice(invoice_id, id);
+            ArrayList<product> prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            for (product prd : prds_buy) {
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID(), date, prd.id, invoice_id, id, 5));
             }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
