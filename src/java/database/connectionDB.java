@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Client;
+import models.Venta;
 import models.product;
 
 public class connectionDB {
@@ -81,6 +82,29 @@ public class connectionDB {
         }
         return null;
     }
+    
+    public static int getLastClientID(){
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return -1;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select CLIENTE.ID from CLIENTE ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+            int id = 0;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            return id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
 
     public static int getLastID() {
 
@@ -132,6 +156,33 @@ public class connectionDB {
         return false;
     }
     
+    public static int getIdByName(String ref) {
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return -1;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select CLIENTE from CLIENTE");
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                if (name.equalsIgnoreCase(ref)) {
+                    return id;
+                }
+            }
+
+            return -1;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    
     public static void createInvoice(int id, int client) {
 
         try {
@@ -159,4 +210,18 @@ public class connectionDB {
         }
     }
 
+    
+    public static void createSale(Venta sale) {
+
+        try {
+            Connection conn = createConnection();
+            Statement stmt;
+            stmt = (Statement) conn.createStatement();
+            String query1 = "INSERT INTO VENTA(ID, FECHA_VENTA, PRODUCTO_ID, FACTURA_ID, USUARIO_ID, ENVIO_ID)values";
+            query1 += "('"+sale.id+"', '"+sale.fecha+"', '"+sale.id_producto+"', '"+sale.id_factura+"', '"+sale.id_producto+"', '"+sale.id_usuario+"', '"+sale.id_envio+"');";
+            stmt.executeUpdate(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

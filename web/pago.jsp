@@ -26,7 +26,7 @@
                                 <input type="text" name="nit"  class="form-control" placeholder="NIT" />
                             </div>
                             <div class="form-group">
-                                <input type="text" name="nit"  class="form-control" placeholder="Telefono" />
+                                <input type="text" name="phone"  class="form-control" placeholder="Telefono" />
                             </div>
                         </div>
                         <div class="col-md-4 mx-auto">

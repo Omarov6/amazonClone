@@ -9,7 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import models.product;
-
+import database.connectionDB;
+import models.Client;
 
 public class sale_controller extends HttpServlet {
 
@@ -17,6 +18,22 @@ public class sale_controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameter("name") != null) System.out.println(request.getParameter("name"));
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String phone = request.getParameter("phone");
+        int nit = Integer.valueOf(request.getParameter("nit"));
+        
+        if(!connectionDB.userExist(name)){
+            int id = connectionDB.getLastClientID() + 1;
+            connectionDB.createClient(new Client(id, name, surname, phone, nit));
+            connectionDB.createInvoice(connectionDB.getLastID()+1, id);
+        }
+        else{
+            int id = connectionDB.getIdByName(name);
+            connectionDB.createInvoice(connectionDB.getLastID()+1, id);
+        }
+        
+        
         else{
             System.out.println("No se pudo obtener nada");
         }
