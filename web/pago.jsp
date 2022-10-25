@@ -50,7 +50,7 @@
             </div>
 
         </div>
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
 
             function confirmCard(e) {
@@ -61,6 +61,7 @@
                     document.getElementById("card").value = ""
                 } else {
                     var form = document.getElementById("form");
+                    Swal.fire('Compra realizada', '', 'success');
                     form.submit();
                 }
 
@@ -148,5 +149,6 @@
                 return (checksum % 10) == 0;
             }
         </script>
+       
     </body>
 </html>

@@ -22,7 +22,7 @@ public class sale_controller extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String phone = request.getParameter("phone");
-        int nit = Integer.valueOf(request.getParameter("nit"));
+        String nit = request.getParameter("nit");
 
         if (!connectionDB.userExist(name)) {
             int id = connectionDB.getLastClientID() + 1;
@@ -46,6 +46,8 @@ public class sale_controller extends HttpServlet {
                 connectionDB.createSale(new Venta(connectionDB.getLastSaleID(), date, prd.id, invoice_id, id, 5));
             }
         }
+        request.getSession().removeAttribute("prds_buy");
+        response.sendRedirect("index.jsp");
 
     }
 
