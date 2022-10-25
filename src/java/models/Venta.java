@@ -11,7 +11,7 @@ public class Venta{
     public int id_factura;
     public int id_usuario;
 
-    public Venta(int id, Date fecha, int id_producto, int id_factura, int id_usuario) {
+    public Venta(int id, int id_producto, int id_factura) {
         this.id = id;
         this.fecha = fecha;
         this.id_producto = id_producto;

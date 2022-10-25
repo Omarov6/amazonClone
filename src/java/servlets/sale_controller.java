@@ -34,7 +34,7 @@ public class sale_controller extends HttpServlet {
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
-                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1, date, prd.id, invoice_id, id));
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
             }
         } else {
             int id = connectionDB.getIdByName(name);
@@ -45,7 +45,7 @@ public class sale_controller extends HttpServlet {
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
-                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1, date, prd.id, invoice_id, id));
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
             }
         }
         request.getSession().removeAttribute("prds_buy");

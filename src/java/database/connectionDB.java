@@ -241,7 +241,7 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO VENTA(ID, FECHA_VENTA, PRODUCTO_ID, FACTURA_ID)values ('"+sale.id+"', '"+sale.fecha+"', '"+sale.id_producto+"', '"+sale.id_factura+"')";
+            String query1 = "INSERT INTO VENTA(ID, PRODUCTO_ID, FACTURA_ID, FECHA_VENTA)values ('"+sale.id+"', '"+sale.id_producto+"', '"+sale.id_factura+"', SYSDATE)";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
