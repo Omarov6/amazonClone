@@ -22,7 +22,7 @@ public class sale_controller extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String phone = request.getParameter("phone");
-        String nit = request.getParameter("nit");
+        String nit = (String)request.getParameter("nit");
 
         if (!connectionDB.userExist(name)) {
             int id = connectionDB.getLastClientID() + 1;
