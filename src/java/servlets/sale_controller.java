@@ -30,25 +30,26 @@ public class sale_controller extends HttpServlet {
             connectionDB.createClient(new Client(id, name, surname, phone, nit));
             connectionDB.createInvoice(invoice_id, id);
             ArrayList<product> prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+            System.out.println("prdocutos: " + prds_buy.size());
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
-                connectionDB.createSale(new Venta(connectionDB.getLastSaleID(), date, prd.id, invoice_id, id, 5));
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1, date, prd.id, invoice_id, id));
             }
         } else {
             int id = connectionDB.getIdByName(name);
             int invoice_id = connectionDB.getLastID() + 1;
             connectionDB.createInvoice(invoice_id, id);
             ArrayList<product> prds_buy = (ArrayList<product>) request.getSession().getAttribute("prds_buy");
+            System.out.println("prdocutos: " + prds_buy.size());
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
-                connectionDB.createSale(new Venta(connectionDB.getLastSaleID(), date, prd.id, invoice_id, id, 5));
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1, date, prd.id, invoice_id, id));
             }
         }
         request.getSession().removeAttribute("prds_buy");
         response.sendRedirect("index.jsp");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

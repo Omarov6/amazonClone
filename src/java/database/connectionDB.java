@@ -189,7 +189,7 @@ public class connectionDB {
             }
             Statement s;
             s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select CLIENTE from CLIENTE");
+            ResultSet rs = s.executeQuery("select * from CLIENTE");
 
             while (rs.next()) {
                 int id = rs.getInt(1);
@@ -213,7 +213,7 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO FACTURA(ID, CLIENTE)values('"+id+"', '"+client+"')";
+            String query1 = "INSERT INTO FACTURA(ID, CLIENTE_ID)values('"+id+"', '"+client+"')";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -241,8 +241,7 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO VENTA(ID, FECHA_VENTA, PRODUCTO_ID, FACTURA_ID, USUARIO_ID, ENVIO_ID)values";
-            query1 += "('"+sale.id+"', '"+sale.fecha+"', '"+sale.id_producto+"', '"+sale.id_factura+"', '"+sale.id_usuario+"','"+sale.id_envio+"');";
+            String query1 = "INSERT INTO VENTA(ID, FECHA_VENTA, PRODUCTO_ID, FACTURA_ID)values ('"+sale.id+"', '"+sale.fecha+"', '"+sale.id_producto+"', '"+sale.id_factura+"')";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);

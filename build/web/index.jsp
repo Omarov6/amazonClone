@@ -31,6 +31,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Registrarse</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Productos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Tecnologia</a>
+                            <a class="dropdown-item" href="#">Hogar</a>
+                            <a class="dropdown-item" href="#">Cuidado Personal</a>
+                            <a class="dropdown-item" href="#">Deporte</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Productos Varios</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <%
                             if (null != request.getSession().getAttribute("prds_buy")) {
