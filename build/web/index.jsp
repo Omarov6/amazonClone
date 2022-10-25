@@ -36,14 +36,18 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Tecnologia</a>
                             <a class="dropdown-item" href="#">Hogar</a>
-                            <a class="dropdown-item" href="#">Cuidado Personal</a>
-                            <a class="dropdown-item" href="#">Deporte</a>
+                            <a class="dropdown-item" href="#">Joyas</a>
+                            <a class="dropdown-item" href="#">Decoracion</a>
+                            <a class="dropdown-item" href="#">Limpieza</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Productos Varios</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Iniciar sesion</a>
                     </li>
                     <li class="nav-item">
                         <%

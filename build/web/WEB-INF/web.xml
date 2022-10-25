@@ -20,6 +20,10 @@
         <servlet-name>sale_controller</servlet-name>
         <servlet-class>servlets.sale_controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>filterProduct</servlet-name>
+        <servlet-class>servlets.filterProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>sale_controller</servlet-name>
         <url-pattern>/sale_controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>filterProduct</servlet-name>
+        <url-pattern>/filterProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

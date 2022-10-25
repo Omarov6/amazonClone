@@ -1,9 +1,9 @@
 .form-inline{
-    width: 800px;
+    width: 700px;
 }
 
 .form-inline .form-control{
-    width: 700px !important;
+    width: 600px !important;
 }
 
 .navbar-brand{
