@@ -82,8 +82,8 @@ public class connectionDB {
         }
         return null;
     }
-    
-    public static int getLastClientID(){
+
+    public static int getLastClientID() {
         try {
             Connection conn = createConnection();
             if (conn == null) {
@@ -129,7 +129,7 @@ public class connectionDB {
         }
         return -1;
     }
-    
+
     public static int getLastSaleID() {
 
         try {
@@ -179,7 +179,7 @@ public class connectionDB {
         }
         return false;
     }
-    
+
     public static int getIdByName(String ref) {
         try {
             Connection conn = createConnection();
@@ -206,14 +206,14 @@ public class connectionDB {
         }
         return -1;
     }
-    
+
     public static void createInvoice(int id, int client) {
 
         try {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO FACTURA(ID, CLIENTE_ID)values('"+id+"', '"+client+"')";
+            String query1 = "INSERT INTO FACTURA(ID, CLIENTE_ID)values('" + id + "', '" + client + "')";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,24 +227,47 @@ public class connectionDB {
             Statement stmt;
             stmt = (Statement) conn.createStatement();
             String query1 = "INSERT INTO CLIENTES(ID, NOMBRE, APELLIDO, TELEFONO, NIT)values";
-            query1 += "('"+client.id+"', '"+client.name+"', '"+client.surname+"', '"+client.phone+"', '"+client.nit+"');";
+            query1 += "('" + client.id + "', '" + client.name + "', '" + client.surname + "', '" + client.phone + "', '" + client.nit + "');";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    
     public static void createSale(Venta sale) {
 
         try {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO VENTA(ID, PRODUCTO_ID, FACTURA_ID, FECHA_VENTA)values ('"+sale.id+"', '"+sale.id_producto+"', '"+sale.id_factura+"', SYSDATE)";
+            String query1 = "INSERT INTO VENTA(ID, PRODUCTO_ID, FACTURA_ID, FECHA_VENTA)values ('" + sale.id + "', '" + sale.id_producto + "', '" + sale.id_factura + "', SYSDATE)";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static boolean userExist(String email, String pass) {
+
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return false;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from USUARIO WHERE MAIL='"+email+"' AND CONTRASENIA='"+pass+"'");
+
+            if(rs.next()) {
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

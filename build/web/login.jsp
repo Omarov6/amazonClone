@@ -24,9 +24,8 @@
                             <button class="btn btn-primary btn-block">Login</button>
                         </form>
                         <div class="form-group mt-4">
-                            <a href="registrar.jsp" class="stretched-link text-primary mt-4">Registrarme</a>
+                            <a href="registrar.jsp" class="text-primary mt-4">Registrarme</a>
                         </div>
-
                     </div>
                 </div>
             </div>
