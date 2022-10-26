@@ -47,7 +47,7 @@
                         <a class="nav-link" href="#">Registrarse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Iniciar sesion</a>
+                        <a class="nav-link" href="login.jsp">Vender</a>
                     </li>
                     <li class="nav-item">
                         <%
