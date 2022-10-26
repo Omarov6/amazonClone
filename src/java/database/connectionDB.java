@@ -270,4 +270,18 @@ public class connectionDB {
         }
         return false;
     }
+    
+    public static void createUser(int id, String name, String surname, String phone, String email, String pass) {
+
+        try {
+            Connection conn = createConnection();
+            Statement stmt;
+            stmt = (Statement) conn.createStatement();
+            String query1 = "INSERT INTO (ID, NOMBRE, APELLIDO, TELEFONO, MAIL, CONTRASENIA) values(";
+            query1 += "'"+id+"', '"+name+"', '"+surname+"', '"+phone+"', '"+email+"', '"+pass+"'";
+            stmt.executeUpdate(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
