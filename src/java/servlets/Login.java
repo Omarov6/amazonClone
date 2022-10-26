@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
         if(connectionDB.userExist(email, pass)){
-            response.sendRedirect("Vender.jsp");
+            response.sendRedirect("Vender_1.jsp");
         }
         else{
             response.sendRedirect("login.jsp");

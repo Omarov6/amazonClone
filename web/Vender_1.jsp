@@ -1,12 +1,11 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="servlets.reg_servlet"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register</title>
+        <title>JSP Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
     </head>
@@ -15,7 +14,7 @@
             <div classs="row">
                 <div class="col-md-5 mx-auto">
                     <div class="card-body">
-                        <h1 class="text-center mb-4">Registro</h1>
+                        <h1 class="text-center mb-4">Formulario de Venta</h1>
                         <form action="/reg_servlet" method="POST">
                             <div class="form-group">
                                 <input name="name" type="text" placeholder="Fulanito" class="form-control" /> 
