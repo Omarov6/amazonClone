@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Client;
 import models.Proveedor;
+import models.Sub;
 import models.Venta;
 import models.product;
 
@@ -329,6 +330,35 @@ public class connectionDB {
                 String c = rs.getString(4);
                 Proveedor p = new Proveedor(id, n, t , c);
                 pr.add(p);
+            }
+
+            return pr;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public static ArrayList<Sub> getSubs() {
+
+        ArrayList<Sub> pr = new ArrayList<Sub>();
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return null;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from SUBCATEGORIA ");
+
+            while(rs.next()) {
+                int id = rs.getInt(1);
+                String n = rs.getString(2);
+                int t = rs.getInt(3);
+                Sub sub = new Sub(id, n, t);
+                pr.add(sub);
             }
 
             return pr;
