@@ -59,6 +59,7 @@ public class vender_servlet extends HttpServlet {
         connectionDB.createProduct(prd);
         connectionDB.insertFoto(links, id);
         System.out.println("INsertando producto lol");
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

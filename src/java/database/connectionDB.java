@@ -438,7 +438,8 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO FOTO(FOTO, PRODUCTO_ID)VALUES('"+link+"', '"+ID+"')";
+            int id = getLastFOTOID() + 1;
+            String query1 = "INSERT INTO FOTO(ID, FOTO, PRODUCTO_ID)VALUES('"+id+"','"+link+"', '"+ID+"')";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
