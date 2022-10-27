@@ -368,4 +368,80 @@ public class connectionDB {
         }
         return null;
     }
+    
+    
+    public static int getLastProductID() {
+
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return -1;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select PRODUCT.ID from PRODUCT ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+            int id = 0;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            return id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    
+    public static int getLastFOTOID() {
+
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return -1;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select FOTO.ID from FOTO ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+            int id = 0;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            return id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    
+    public static void createProduct(product p) {
+
+        try {
+            Connection conn = createConnection();
+            Statement stmt;
+            stmt = (Statement) conn.createStatement();
+            String query1 = "INSERT INTO PRODUCTO(ID, NOMBRE, MARCA, DESCRIPCION, PRECIO, Sub-Categoria_Id, PROVEEDOR_ID)values";
+            query1 += "('"+p.id+"', '"+p.name+"', '"+p.tag+"', '"+p.description+"', '"+p.price+"', '"+p.sub_category+"', '"+p.suplier_id+"')";
+            stmt.executeUpdate(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void insertFoto(String link, int ID) {
+
+        try {
+            Connection conn = createConnection();
+            Statement stmt;
+            stmt = (Statement) conn.createStatement();
+            String query1 = "INSERT INTO FOTO(FOTO, PRODUCTO_ID)VALUES('"+link+"', '"+ID+"')";
+            stmt.executeUpdate(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

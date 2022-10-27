@@ -5,6 +5,7 @@
 <%@page import="database.connectionDB"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Proveedor"%>
+<%@page import="servlets.vender_servlet"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +20,7 @@
                 <div class="container" style="width: 900px;">
                     <div class="card-body">
                         <h1 class="text-center mb-4">Formulario de Venta</h1>
-                        <form class="row" action="reg_servlet" method="POST">
+                        <form class="row" action="vender_servlet" method="POST">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <input name="name" type="text" placeholder="Nombre del Producto" class="form-control" /> 
