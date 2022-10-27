@@ -17,21 +17,18 @@
                         <h1 class="text-center mb-4">Formulario de Venta</h1>
                         <form action="/reg_servlet" method="POST">
                             <div class="form-group">
-                                <input name="name" type="text" placeholder="Fulanito" class="form-control" /> 
+                                <input name="name" type="text" placeholder="Nombre del Producto" class="form-control" /> 
                             </div>
                             <div class="form-group">
-                                <input name="surname" type="text" placeholder="De Tal" class="form-control" /> 
+                                <textarea name="description" placeholder="Descripcion" class="form-control"></textarea> 
                             </div>
                             <div class="form-group">
-                                <input name="phone" type="tel" placeholder="59622879" class="form-control" /> 
+                                <input name="price" type="text" placeholder="Precio" class="form-control" /> 
                             </div>
                             <div class="form-group">
-                                <input name="email" type="email" placeholder="example@gmail.com" class="form-control" /> 
+                                <input name="tag" type="text" placeholder="Marca" class="form-control" /> 
                             </div>
-                            <div class="form-group">
-                                <input name="pass" type="password" placeholder="********" class="form-control" /> 
-                            </div>
-                            <button class="btn btn-primary btn-block">Registrarme</button>
+                            <button class="btn btn-success btn-block">Registrar Producto</button>
                         </form>
                     </div>
                 </div>
