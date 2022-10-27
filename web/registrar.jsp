@@ -2,6 +2,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="servlets.reg_servlet"%>
+<%@page import="servlets.prueba"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@
                 <div class="col-md-5 mx-auto">
                     <div class="card-body">
                         <h1 class="text-center mb-4">Registro</h1>
-                        <form action="/reg_servlet" method="POST">
+                        <form action="prueba" method="POST">
                             <div class="form-group">
                                 <input name="name" type="text" placeholder="Fulanito" class="form-control" /> 
                             </div>

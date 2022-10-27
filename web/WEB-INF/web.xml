@@ -32,6 +32,10 @@
         <servlet-name>reg_servlet</servlet-name>
         <servlet-class>servlets.reg_servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>prueba</servlet-name>
+        <servlet-class>servlets.prueba</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>reg_servlet</servlet-name>
         <url-pattern>/reg_servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>prueba</servlet-name>
+        <url-pattern>/prueba</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
