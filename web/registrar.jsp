@@ -17,7 +17,7 @@
                 <div class="col-md-5 mx-auto">
                     <div class="card-body">
                         <h1 class="text-center mb-4">Registro</h1>
-                        <form action="prueba" method="POST">
+                        <form action="reg_servlet" method="POST">
                             <div class="form-group">
                                 <input name="name" type="text" placeholder="Fulanito" class="form-control" /> 
                             </div>

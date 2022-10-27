@@ -29,7 +29,7 @@ public class reg_servlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = connectionDB.getLastClientID();
+        int id = connectionDB.getLastUserID();
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String phone = request.getParameter("phone");
