@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Client;
+import models.Proveedor;
 import models.Venta;
 import models.product;
 
@@ -306,5 +307,35 @@ public class connectionDB {
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static ArrayList<Proveedor> getProvedores() {
+
+        ArrayList<Proveedor> pr = new ArrayList<Proveedor>();
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return null;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from PROVEEDOR");
+
+            while(rs.next()) {
+                int id = rs.getInt(1);
+                String n = rs.getString(2);
+                String t = rs.getString(3);
+                String c = rs.getString(4);
+                Proveedor p = new Proveedor(id, n, t , c);
+                pr.add(p);
+            }
+
+            return pr;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

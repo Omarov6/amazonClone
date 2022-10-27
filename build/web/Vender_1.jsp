@@ -1,6 +1,9 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="database.connectionDB"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="models.Proveedor"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,6 +30,17 @@
                             </div>
                             <div class="form-group">
                                 <input name="tag" type="text" placeholder="Marca" class="form-control" /> 
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Proveedor</label>
+                                <select class="form-control">
+                                    <%
+                                        ArrayList<Proveedor> proveedores = connectionDB.getProvedores();
+                                        for(Proveedor p : proveedores){
+                                            out.println("<option>"+p.nombre+"</option>");
+                                        }
+                                    %>
+                                </select>
                             </div>
                             <button class="btn btn-success btn-block">Registrar Producto</button>
                         </form>
