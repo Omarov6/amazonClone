@@ -35,8 +35,11 @@ public class sale_controller extends HttpServlet {
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
                 connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
-                float total = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
-                connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1,  total, prd.id);
+                double pr = prd.price;
+                if(connectionDB.getPrice(prd.id) != 0){
+                    pr = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
+                }
+                connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1, (float) pr, prd.id);
             }
         } else {
             int id = connectionDB.getIdByName(name);
@@ -48,8 +51,11 @@ public class sale_controller extends HttpServlet {
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
                 connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
-                float total = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
-                connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1,  total, prd.id);
+                double pr = prd.price;
+                if(connectionDB.getPrice(prd.id) != 0){
+                    pr = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
+                }
+                connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1, (float) pr, prd.id);
             }
         }
         request.getSession().removeAttribute("prds_buy");
