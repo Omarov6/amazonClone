@@ -300,7 +300,7 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO CARRITO(ID, CANTIDAD, TOTA, PRODUCTO_ID)values ('"+id+"', '"+c+"', '"+t+"', '"+p_id+"')";
+            String query1 = "INSERT INTO CARRITO(ID, CANTIDAD, TOTAL, PRODUCTO_ID)values ('"+id+"', '"+c+"', '"+t+"', '"+p_id+"')";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
