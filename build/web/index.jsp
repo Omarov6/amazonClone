@@ -39,7 +39,7 @@
                             <%
                                 ArrayList<Categoria> arr_c = secondController.getCats();
                                 for(Categoria cat : arr_c){
-                                    out.println("<a class='dropdown-item' href='p'>"+cat.nombre+"</a>");                                }
+                                    out.println("<a class='dropdown-item' href='#'>"+cat.nombre+"</a>");                                }
                             %>
                         </div>
                     </li>

@@ -258,9 +258,32 @@ public class connectionDB {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static float getPrice(int id) {
+
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return 0;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select DESCUENTO.PORCENTAJE from DESCUENTO WHERE id_producto='"+id+"' and f_inicio >=SYSDATE and f_final <= SYSDATE");
+
+            if(rs.next()) {
+                return rs.getFloat(1);
+            }
+
+            return 0;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 
     public static void createSale(Venta sale) {
-
         try {
             Connection conn = createConnection();
             Statement stmt;
@@ -271,6 +294,21 @@ public class connectionDB {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void createCarrito(int id, int c, float t, int p_id) {
+        try {
+            Connection conn = createConnection();
+            Statement stmt;
+            stmt = (Statement) conn.createStatement();
+            String query1 = "INSERT INTO CARRITO(ID, CANTIDAD, TOTA, PRODUCTO_ID)values ('"+id+"', '"+c+"', '"+t+"', '"+p_id+"')";
+            stmt.executeUpdate(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
 
     public static boolean userExist(String email, String pass) {
 
@@ -369,6 +407,29 @@ public class connectionDB {
         return null;
     }
     
+    public static int getLastCarritotID() {
+
+        try {
+            Connection conn = createConnection();
+            if (conn == null) {
+                System.out.println("Problemas de conexion");
+                return -1;
+            }
+            Statement s;
+            s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select CARRITO.ID from CARRITO ORDER BY ID DESC FETCH FIRST 1 ROWS ONLY");
+            int id = 0;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            return id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
     
     public static int getLastProductID() {
 

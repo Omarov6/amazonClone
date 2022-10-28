@@ -40,6 +40,10 @@
         <servlet-name>vender_servlet</servlet-name>
         <servlet-class>servlets.vender_servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>filter_page</servlet-name>
+        <servlet-class>servlets.filter_page</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>vender_servlet</servlet-name>
         <url-pattern>/vender_servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>filter_page</servlet-name>
+        <url-pattern>/filter_page</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

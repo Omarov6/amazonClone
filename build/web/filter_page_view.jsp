@@ -1,19 +1,18 @@
 
-<%@page import="models.Categoria"%>
+
 <%@page import="database.connectionDB"%>
 <%@page import="database.secondController"%>
+<%@page import="models.Categoria"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="servlets.init"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="models.product"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>RapiCompras</title>
-        <style><%@include file="/WEB-INF/css/init.css"%></style>
+        <title>JSP Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <%request.getRequestDispatcher("init").include(request, response);%>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,8 +37,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <%
                                 ArrayList<Categoria> arr_c = secondController.getCats();
-                                for(Categoria cat : arr_c){
-                                    out.println("<a class='dropdown-item' href='#'>"+cat.nombre+"</a>");                                }
+                                for (Categoria cat : arr_c) {
+                                    out.println("<a class='dropdown-item' href='filter_page?id=" + cat.id + "'>" + cat.nombre + "</a>");
+                                }
                             %>
                         </div>
                     </li>
@@ -142,17 +142,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     </body>
 </html>
