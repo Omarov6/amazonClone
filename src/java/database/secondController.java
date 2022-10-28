@@ -16,21 +16,7 @@ import models.Sub;
 
 public class secondController {
     public static Connection createConnection() {
-        String url = "jdbc:oracle:thin:@localhost:1521:umg";
-        String user = "system";
-        String password = "1234";
-
-        try {
-            System.out.println("Connecting to DAtabase");
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println(connection.toString());
-            System.out.println("Connection Success");
-            return connection;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return connectionDB.createConnection();
     }
     
     public static ArrayList<Categoria> getCats() {
