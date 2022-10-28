@@ -53,6 +53,7 @@ public class sale_controller extends HttpServlet {
                 connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
                 double pr = prd.price;
                 if(connectionDB.getPrice(prd.id) != 0){
+                    System.out.println("Descuento: " + connectionDB.getPrice(prd.id));
                     pr = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
                 }
                 connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1, (float) pr, prd.id);
