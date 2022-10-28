@@ -18,7 +18,7 @@ public class secondController {
     public static Connection createConnection() {
         String url = "jdbc:oracle:thin:@localhost:1521:umg";
         String user = "system";
-        String password = "Umg$19";
+        String password = "1234";
 
         try {
             System.out.println("Connecting to DAtabase");

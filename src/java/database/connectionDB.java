@@ -17,9 +17,9 @@ import models.product;
 public class connectionDB {
 
     public static Connection createConnection() {
-        String url = "jdbc:oracle:thin:@localhost:1521:umg";
+        String url = "jdbc:oracle:thin:@localhost:1521:UMG";
         String user = "system";
-        String password = "Umg$19";
+        String password = "1234";
 
         try {
             System.out.println("Connecting to DAtabase");
@@ -269,7 +269,7 @@ public class connectionDB {
             }
             Statement s;
             s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select DESCUENTO.PORCENTAJE from DESCUENTO WHERE id_producto='"+id+"' and f_inicio >=SYSDATE and f_final <= SYSDATE");
+            ResultSet rs = s.executeQuery("select DESCUENTO.PORCENTAJE from DESCUENTO WHERE id_producto='"+id+"'");
 
             if(rs.next()) {
                 return rs.getFloat(1);
