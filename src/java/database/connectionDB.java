@@ -424,7 +424,7 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO PRODUCTO(ID, NOMBRE, MARCA, DESCRIPCION, PRECIO, Sub-Categoria_Id, PROVEEDOR_ID)values";
+            String query1 = "INSERT INTO PRODUCTO(ID, NOMBRE, MARCA, DESCRIPCION, PRECIO, SUBCATEGORIAID, PROVEEDOR_ID)values";
             query1 += "('"+p.id+"', '"+p.name+"', '"+p.tag+"', '"+p.description+"', '"+p.price+"', '"+p.sub_category+"', '"+p.suplier_id+"')";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {

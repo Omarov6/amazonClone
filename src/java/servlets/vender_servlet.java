@@ -55,9 +55,10 @@ public class vender_servlet extends HttpServlet {
                 id2 = s.id;
             }
         }
-        product prd = new product(connectionDB.getLastProductID()+1, name, tag, desc, price, id, id2);
+        int prd_id = connectionDB.getLastProductID()+1;
+        product prd = new product(prd_id, name, tag, desc, price, id, id2);
         connectionDB.createProduct(prd);
-        connectionDB.insertFoto(links, id);
+        connectionDB.insertFoto(links, prd_id);
         System.out.println("INsertando producto lol");
         response.sendRedirect("index.jsp");
     }
