@@ -51,7 +51,8 @@ public class connectionDB {
                 String m = rs.getString(3);
                 String d = rs.getString(4);
                 double p = rs.getDouble(5);
-                product nuevo = new product(id, n, m, d, p);
+                int cant = rs.getInt(6);
+                product nuevo = new product(id, n, m, d, p, cant);
                 products.add(nuevo);
             }
             return products;
@@ -479,14 +480,27 @@ public class connectionDB {
         return -1;
     }
     
-    public static void createProduct(product p) {
+    public static void createProduct(product p, int cantidad) {
 
         try {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO PRODUCTO(ID, NOMBRE, MARCA, DESCRIPCION, PRECIO, SUBCATEGORIAID, PROVEEDOR_ID)values";
-            query1 += "('"+p.id+"', '"+p.name+"', '"+p.tag+"', '"+p.description+"', '"+p.price+"', '"+p.sub_category+"', '"+p.suplier_id+"')";
+            String query1 = "INSERT INTO PRODUCTO(ID, NOMBRE, MARCA, DESCRIPCION, PRECIO, SUBCATEGORIAID, PROVEEDOR_ID, CANTIDAD)values";
+            query1 += "('"+p.id+"', '"+p.name+"', '"+p.tag+"', '"+p.description+"', '"+p.price+"', '"+p.sub_category+"', '"+p.suplier_id+"', '"+cantidad+"')";
+            stmt.executeUpdate(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void actualizarProducto() {
+
+        try {
+            Connection conn = createConnection();
+            Statement stmt;
+            stmt = (Statement) conn.createStatement();
+            String query1 = "UPDATE PRODUCTO SET CANTIDAD=CANTIDAD+1";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);

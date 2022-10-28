@@ -22,7 +22,7 @@ public class sale_controller extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String phone = request.getParameter("phone");
-        String nit = (String)request.getParameter("nit");
+        String nit = (String) request.getParameter("nit");
 
         if (!connectionDB.userExist(name)) {
             int id = connectionDB.getLastClientID() + 1;
@@ -34,12 +34,13 @@ public class sale_controller extends HttpServlet {
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
-                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID() + 1, prd.id, invoice_id));
                 double pr = prd.price;
-                if(connectionDB.getPrice(prd.id) != 0){
-                    pr = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
+                if (connectionDB.getPrice(prd.id) != 0) {
+                    pr = (float) (prd.price - (connectionDB.getPrice(prd.id) * prd.price));
                 }
-                connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1, (float) pr, prd.id);
+                connectionDB.createCarrito(connectionDB.getLastCarritotID() + 1, 1, (float) pr, prd.id);
+                connectionDB.actualizarProducto();
             }
         } else {
             int id = connectionDB.getIdByName(name);
@@ -50,13 +51,14 @@ public class sale_controller extends HttpServlet {
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             for (product prd : prds_buy) {
-                connectionDB.createSale(new Venta(connectionDB.getLastSaleID()+1,  prd.id, invoice_id));
+                connectionDB.createSale(new Venta(connectionDB.getLastSaleID() + 1, prd.id, invoice_id));
                 double pr = prd.price;
-                if(connectionDB.getPrice(prd.id) != 0){
+                if (connectionDB.getPrice(prd.id) != 0) {
                     System.out.println("Descuento: " + connectionDB.getPrice(prd.id));
-                    pr = (float) (prd.price - (connectionDB.getPrice(prd.id)*prd.price));
+                    pr = (float) (prd.price - (connectionDB.getPrice(prd.id) * prd.price));
                 }
-                connectionDB.createCarrito(connectionDB.getLastCarritotID()+1,1, (float) pr, prd.id);
+                connectionDB.createCarrito(connectionDB.getLastCarritotID() + 1, 1, (float) pr, prd.id);
+                connectionDB.actualizarProducto();
             }
         }
         request.getSession().removeAttribute("prds_buy");

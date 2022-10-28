@@ -61,6 +61,9 @@
                                 <div class="form-group">
                                     <input name="image" type="text" placeholder="Link de Imagen" class="form-control" /> 
                                 </div>
+                                    <div class="form-group">
+                                    <input name="cantidad" type="text" placeholder="Cantidad de Productos" class="form-control" /> 
+                                </div>
                             </div>
                             <button class="btn btn-success btn-block">Registrar Producto</button>
                         </form>

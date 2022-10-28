@@ -30,6 +30,7 @@ public class vender_servlet extends HttpServlet {
         String prov = request.getParameter("proveedor");
         String sub = request.getParameter("sub");
         String links = request.getParameter("image");
+        int cantidad = Integer.valueOf(request.getParameter("cantidad"));
         ArrayList<Proveedor> arr_p = connectionDB.getProvedores();
         ArrayList<Sub> arr_s = connectionDB.getSubs();
         int id = 0;
@@ -46,7 +47,7 @@ public class vender_servlet extends HttpServlet {
         }
         int prd_id = connectionDB.getLastProductID()+1;
         product prd = new product(prd_id, name, tag, desc, price, id, id2);
-        connectionDB.createProduct(prd);
+        connectionDB.createProduct(prd, cantidad);
         connectionDB.insertFoto(links, prd_id);
         System.out.println("INsertando producto lol");
         response.sendRedirect("index.jsp");
