@@ -20,12 +20,18 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
-        if(connectionDB.userExist(email, pass)){
-            response.sendRedirect("Vender_1.jsp");
+        if(email.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("1234")){
+            response.sendRedirect("admin-view.jsp");
         }
         else{
-            response.sendRedirect("login.jsp");
+            if(connectionDB.userExist(email, pass)){
+            response.sendRedirect("Vender_1.jsp");
+            }
+            else{
+                response.sendRedirect("login.jsp");
+            }
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -16,7 +16,7 @@
                         <h1 class="text-center mb-4">Login</h1>
                         <form action="Login" method="POST">
                             <div class="form-group">
-                                <input name="email" type="email" placeholder="example@gmail.com" class="form-control" /> 
+                                <input name="email" type="text" placeholder="example@gmail.com" class="form-control" /> 
                             </div>
                             <div class="form-group">
                                 <input name="pass" type="password" placeholder="********" class="form-control" /> 

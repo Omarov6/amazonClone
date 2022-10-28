@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="servlets.init"%>
 <%@page import="models.product"%>
+<%@page import="servlets.Login"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,7 +45,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Registrarse</a>
+                        <a class="nav-link" href="login.jsp">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.jsp">Vender</a>
