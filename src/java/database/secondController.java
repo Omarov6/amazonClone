@@ -30,7 +30,7 @@ public class secondController {
             }
             Statement s;
             s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select * from CATEGORIA");
+            ResultSet rs = s.executeQuery("select * from SUBCATEGORIA");
 
             while(rs.next()) {
                 int id = rs.getInt(1);

@@ -12,11 +12,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style><%@include file="/WEB-INF/css/init.css"%></style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="https://cdn-icons-png.flaticon.com/512/181/181591.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 RapiCompras
             </a>
@@ -44,10 +45,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.jsp">Vender</a>
+                        <a class="nav-link" href="/AmazonClone">Volver</a>
                     </li>
                     <li class="nav-item">
                         <%
@@ -69,6 +67,16 @@
             <div class="row">
                 <%
                     ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
+                    ArrayList<product> aux = prds;
+                    int cat_id = (int) request.getSession().getAttribute("id");
+                    int index = 0;
+                    for (product x : prds) {
+                        if (x.sub_category != cat_id) {
+                            aux.remove(index);
+                        }
+                        index++;
+                    }
+                    prds = aux;
 
                     if (prds != null) {
                         for (product prd : prds) {

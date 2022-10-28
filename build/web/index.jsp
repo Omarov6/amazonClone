@@ -7,6 +7,7 @@
 <%@page import="servlets.init"%>
 <%@page import="models.product"%>
 <%@page import="servlets.Login"%>
+<%@page import="servlets.filter_page"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,8 +40,8 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <%
                                 ArrayList<Categoria> arr_c = secondController.getCats();
-                                for(Categoria cat : arr_c){
-                                    out.println("<a class='dropdown-item' href='#'>"+cat.nombre+"</a>");  
+                                for (Categoria cat : arr_c) {
+                                    out.println("<a class='dropdown-item' href='filter_page?id=" + cat.id + "'>" + cat.nombre + "</a>");
                                 }
                             %>
                         </div>
@@ -71,7 +72,19 @@
             <div class="row">
                 <%
                     ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
+                    ArrayList<product> aux = prds;
+                    if (request.getSession().getAttribute("id") != null) {
+                        int cat_id = (int) request.getSession().getAttribute("id");
+                        int index = 0;
+                        for (product x : prds) {
+                            if (x.sub_category != cat_id) {
+                                aux.remove(index);
+                            }
+                            index++;
+                        }
+                    }
 
+                    prds = aux;
                     if (prds != null) {
                         for (product prd : prds) {
                             ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);

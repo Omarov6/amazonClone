@@ -17,7 +17,7 @@ import models.product;
 public class connectionDB {
 
     public static Connection createConnection() {
-        String url = "jdbc:oracle:thin:@localhost:1521:UMG";
+        String url = "jdbc:oracle:thin:@localhost:1521:xe";
         String user = "system";
         String password = "1234";
 

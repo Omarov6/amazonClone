@@ -17,7 +17,9 @@ public class filter_page extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.valueOf(request.getParameter("id"));
-        ArrayList<Sub> subs = connectionDB.getSubs();
+        System.out.println("ID: " + id);
+        request.getSession().setAttribute("id", id);
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
