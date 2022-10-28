@@ -8,6 +8,7 @@
 <%@page import="models.product"%>
 <%@page import="servlets.Login"%>
 <%@page import="servlets.filter_page"%>
+<%@page import="servlets.filterProduct"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,9 +27,9 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success ml-1" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" action="filterProduct" method="POST">
+                <input class="form-control" name="name" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success ml-1" >Search</button>
             </form>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -72,8 +73,8 @@
             <div class="row">
                 <%
                     ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
-                    ArrayList<product> aux = prds;
                     if (request.getSession().getAttribute("id") != null) {
+                        ArrayList<product> aux = prds;
                         int cat_id = (int) request.getSession().getAttribute("id");
                         int index = 0;
                         for (product x : prds) {
@@ -82,9 +83,21 @@
                             }
                             index++;
                         }
+                        prds = aux;
+                    }
+                    if (request.getSession().getAttribute("name") != null) {
+                        ArrayList<product> aux = prds;
+                        String n = (String) request.getSession().getAttribute("name");
+                        int index = 0;
+                        for (product x : prds) {
+                            if (!x.name.equalsIgnoreCase(n)) {
+                                aux.remove(index);
+                            }
+                            index++;
+                        }
+                        prds = aux;
                     }
 
-                    prds = aux;
                     if (prds != null) {
                         for (product prd : prds) {
                             ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);

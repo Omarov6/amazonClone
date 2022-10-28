@@ -13,7 +13,10 @@ public class filterProduct extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String n = request.getParameter("name");
+        System.out.println("ID: " + n);
+        request.getSession().setAttribute("name", n);
+        response.sendRedirect("index.jsp");
         
     }
 
