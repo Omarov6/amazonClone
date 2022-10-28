@@ -1,5 +1,7 @@
 
+<%@page import="models.Categoria"%>
 <%@page import="database.connectionDB"%>
+<%@page import="database.secondController"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="servlets.init"%>
@@ -28,19 +30,17 @@
             </form>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Productos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Tecnologia</a>
-                            <a class="dropdown-item" href="#">Hogar</a>
-                            <a class="dropdown-item" href="#">Joyas</a>
-                            <a class="dropdown-item" href="#">Decoracion</a>
-                            <a class="dropdown-item" href="#">Limpieza</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Productos Varios</a>
+                            <%
+                                ArrayList<Categoria> arr_c = secondController.getCats();
+                                for(Categoria cat : arr_c){
+                                    out.println("<a class='dropdown-item' href='p'>"+cat.nombre+"</a>");                                }
+                            %>
                         </div>
                     </li>
                     <li class="nav-item">
