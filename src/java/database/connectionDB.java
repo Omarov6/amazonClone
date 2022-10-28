@@ -51,8 +51,10 @@ public class connectionDB {
                 String m = rs.getString(3);
                 String d = rs.getString(4);
                 double p = rs.getDouble(5);
+                int sub = rs.getInt(6);
+                int prov = rs.getInt(7);
                 int cant = rs.getInt(8);
-                product nuevo = new product(id, n, m, d, p, cant);
+                product nuevo = new product(id, n, m, d, p, sub, prov, cant);
                 products.add(nuevo);
             }
             return products;

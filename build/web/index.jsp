@@ -20,7 +20,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.jsp">
                 <img src="https://cdn-icons-png.flaticon.com/512/181/181591.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 RapiCompras
             </a>
@@ -72,22 +72,23 @@
 
             <div class="row">
                 <%
-                    ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
-                    if (request.getSession().getAttribute("id") != null) {
-                        ArrayList<product> aux = prds;
-                        int cat_id = (int) request.getSession().getAttribute("id");
-                        int index = 0;
-                        for (product x : prds) {
-                            if (x.sub_category != cat_id) {
-                                aux.remove(index);
+                    if (request.getSession().getAttribute("products") != null) {
+                        ArrayList<product> prds = (ArrayList<product>) request.getSession().getAttribute("products");
+                        ArrayList<product> aux = new ArrayList<product>();
+                        if (request.getSession().getAttribute("id") != null) {
+                            int cat_id = (int) request.getSession().getAttribute("id");
+                            out.println(cat_id);
+                            for (product prd : prds) {
+                                out.println(prd.sub_category);
+                                if (String.valueOf(prd.sub_category).equals(String.valueOf(cat_id))) {
+                                    out.println("entramos");
+                                    aux.add(prd);
+                                }
                             }
-                            index++;
+                            prds = aux;
                         }
-                        prds = aux;
-                    }
-                    
+                        
 
-                    if (prds != null) {
                         for (product prd : prds) {
                             ArrayList<String> images = connectionDB.getPhotoByProduct(prd.id);
                 %>
