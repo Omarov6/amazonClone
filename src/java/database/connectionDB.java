@@ -51,7 +51,7 @@ public class connectionDB {
                 String m = rs.getString(3);
                 String d = rs.getString(4);
                 double p = rs.getDouble(5);
-                int cant = rs.getInt(6);
+                int cant = rs.getInt(8);
                 product nuevo = new product(id, n, m, d, p, cant);
                 products.add(nuevo);
             }
@@ -500,7 +500,7 @@ public class connectionDB {
             Connection conn = createConnection();
             Statement stmt;
             stmt = (Statement) conn.createStatement();
-            String query1 = "UPDATE PRODUCTO SET CANTIDAD=CANTIDAD+1";
+            String query1 = "UPDATE PRODUCTO SET CANTIDAD=CANTIDAD-1";
             stmt.executeUpdate(query1);
         } catch (SQLException ex) {
             Logger.getLogger(connectionDB.class.getName()).log(Level.SEVERE, null, ex);

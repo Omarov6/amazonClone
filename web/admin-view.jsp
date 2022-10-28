@@ -66,11 +66,10 @@
                                     for (product p : pr) {
                                         if (p.id == car.id_prd) {
                                             out.println("<td>" + p.name + "</td>");
+                                            out.println("<td>" + car.cantidad + "</td>");
                                             out.println("<td>" + p.cantidad + "</td>");
                                         }
                                     }
-
-                                    out.println("<td>" + car.cantidad + "</td>");
                                     out.println("<td>" + car.total + "</td>");
                                     out.println("</tr>");
                                 }

@@ -85,18 +85,7 @@
                         }
                         prds = aux;
                     }
-                    if (request.getSession().getAttribute("name") != null) {
-                        ArrayList<product> aux = prds;
-                        String n = (String) request.getSession().getAttribute("name");
-                        int index = 0;
-                        for (product x : prds) {
-                            if (!x.name.equalsIgnoreCase(n)) {
-                                aux.remove(index);
-                            }
-                            index++;
-                        }
-                        prds = aux;
-                    }
+                    
 
                     if (prds != null) {
                         for (product prd : prds) {
